@@ -1,4 +1,4 @@
-import { Bell, Search, User, Calendar, Citrus } from 'lucide-react';
+import { Bell, Search, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -9,6 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import lemonLogo from '@/assets/lemon-agency-logo.png';
+import jakubProfile from '@/assets/jakub-profile.png';
 
 interface HeaderProps {
   sidebarCollapsed?: boolean;
@@ -21,71 +23,69 @@ export function Header({ sidebarCollapsed }: HeaderProps) {
   });
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border/50 bg-card/95 backdrop-blur-xl supports-[backdrop-filter]:bg-card/80 px-6 shadow-lg shadow-black/5">
       {/* Logo & Branding */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/25">
-              <Citrus className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-success border-2 border-background" />
-          </div>
-          <div className="hidden md:block">
-            <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Lemon Agency
-            </h1>
-            <p className="text-xs text-muted-foreground -mt-0.5">Lead Delivery Platform</p>
-          </div>
+          <img 
+            src={lemonLogo} 
+            alt="Lemon Agency" 
+            className="h-10 object-contain drop-shadow-lg"
+          />
         </div>
         
-        <div className="h-8 w-px bg-border hidden lg:block" />
+        <div className="h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent hidden lg:block" />
         
         {/* Search */}
-        <div className="relative w-64 hidden lg:block">
+        <div className="relative w-72 hidden lg:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search leads, clients..."
-            className="pl-9 bg-muted/50 border-0 focus-visible:ring-1 focus-visible:ring-primary/50"
+            className="pl-9 bg-background/50 border-border/50 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all duration-200"
           />
         </div>
       </div>
 
       {/* Current Period & Actions */}
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
           <Calendar className="h-4 w-4 text-primary" />
-          <span className="text-sm font-medium">{currentMonth}</span>
+          <span className="text-sm font-semibold text-primary">{currentMonth}</span>
         </div>
 
-        <Button variant="ghost" size="icon" className="relative hover:bg-primary/10">
-          <Bell className="h-5 w-5" />
-          <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-gradient-to-r from-destructive to-destructive/80 text-[10px] font-bold text-destructive-foreground flex items-center justify-center animate-pulse">
+        <Button variant="ghost" size="icon" className="relative hover:bg-primary/10 transition-colors duration-200">
+          <Bell className="h-5 w-5 text-muted-foreground" />
+          <span className="absolute -top-0.5 -right-0.5 h-5 w-5 rounded-full bg-gradient-to-br from-destructive to-destructive/80 text-[10px] font-bold text-destructive-foreground flex items-center justify-center shadow-lg shadow-destructive/30 animate-pulse">
             3
           </span>
         </Button>
 
-        <div className="h-8 w-px bg-border" />
+        <div className="h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-3 hover:bg-primary/10 pr-4">
-              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center ring-2 ring-primary/20">
-                <User className="h-4 w-4 text-primary" />
+            <Button variant="ghost" className="flex items-center gap-3 hover:bg-primary/10 pr-4 transition-all duration-200">
+              <div className="relative">
+                <img 
+                  src={jakubProfile} 
+                  alt="Jakub Zwolinski" 
+                  className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/30 shadow-lg shadow-primary/20"
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-success border-2 border-card shadow-lg" />
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-semibold text-foreground">Jakub Zwolinski</p>
+                <p className="text-sm font-bold text-foreground">Jakub Zwolinski</p>
                 <p className="text-xs text-muted-foreground">jakub@lemon.agency</p>
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="w-56 border-border/50 bg-card/95 backdrop-blur-xl">
+            <DropdownMenuLabel className="text-primary">My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-primary/10 focus:text-primary">Profile</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-primary/10 focus:text-primary">Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive">Log out</DropdownMenuItem>
+            <DropdownMenuItem className="text-destructive focus:bg-destructive/10">Log out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
