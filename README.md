@@ -1,73 +1,63 @@
-# Welcome to your Lovable project
+# LeadFlow Pro
 
-## Project info
+LeadFlow Pro is a React-based lead management application for reviewing, filtering, selecting, and tracking leads.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Tech stack
 
-## How can I edit this code?
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- Lucide icons
 
-There are several ways of editing your application.
+## Getting started
 
-**Use Lovable**
+### Requirements
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- Node.js (LTS recommended)
+- npm
 
-Changes made via Lovable will be committed automatically to this repo.
+### Install and run
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Vite starts a local development server and prints the address in the terminal.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Production build
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+npm run preview
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Lead management
 
-## What technologies are used for this project?
+The current interface includes:
 
-This project is built with:
+- Lead listing with text search
+- Filtering by lead status and industry
+- Paginated lead results
+- Row selection and page-level select-all
+- Lead status indicators
+- Recent-lead activity display
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Some screens currently use in-memory sample data. Treat those records as demonstration data, not live customer records. Persistence, authentication, and external CRM integrations should be considered separate capabilities unless implemented elsewhere in the application.
 
-## How can I deploy this project?
+## Development notes
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- Keep filtering and pagination behavior consistent when changing the lead table.
+- Reset pagination when search or filters change.
+- Ensure select-all applies to the visible page and that empty search results have a clear state.
+- Avoid committing credentials, API keys, or real personal data.
 
-## Can I connect a custom domain to my Lovable project?
+## Suggested verification
 
-Yes, you can!
+Before submitting UI changes, run the available lint and build scripts from `package.json`. Add or update tests when changing filtering, pagination, or selection behavior.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Keep changes focused, describe user-visible behavior in commit messages, and include reproduction steps for bug fixes.
