@@ -104,11 +104,20 @@ export function LeadsTable() {
   };
 
   const toggleSelectAll = () => {
-    if (selectedLeads.length === paginatedLeads.length) {
-      setSelectedLeads([]);
-    } else {
-      setSelectedLeads(paginatedLeads.map(lead => lead.id));
-    }
+    const visibleLeadIds = paginatedLeads.map(lead => lead.id);
+
+    if (visibleLeadIds.length === 0) return;
+
+    setSelectedLeads(prev => {
+      const allVisibleSelected = visibleLeadIds.every(id => prev.includes(id));
+
+      if (allVisibleSelected) {
+        const visibleIds = new Set(visibleLeadIds);
+        return prev.filter(id => !visibleIds.has(id));
+      }
+
+      return Array.from(new Set([...prev, ...visibleLeadIds]));
+    });
   };
 
   const toggleSelect = (id: string) => {
@@ -229,7 +238,7 @@ export function LeadsTable() {
               <tr className="border-b border-border/60 bg-gradient-to-r from-muted/80 to-muted/40">
                 <th className="w-12 p-4">
                   <Checkbox 
-                    checked={selectedLeads.length === paginatedLeads.length && paginatedLeads.length > 0}
+                    checked={paginatedLeads.length > 0 && paginatedLeads.every(lead => selectedLeads.includes(lead.id))}
                     onCheckedChange={toggleSelectAll}
                     className="border-primary/40"
                   />
